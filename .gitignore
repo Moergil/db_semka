@@ -1,5 +1,6 @@
 .idea/
 DBSemka.iml
+db_semka.iml
 lib/
 out/
 PrivateConfig.java

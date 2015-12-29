@@ -1,6 +1,7 @@
 package sk.fri.uniza.db.sem.db;
 
 import oracle.jdbc.OracleTypes;
+import sk.fri.uniza.db.sem.PrivateConfig;
 import sk.fri.uniza.db.sem.db.model.*;
 
 import java.sql.*;

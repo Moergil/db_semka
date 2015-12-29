@@ -48,14 +48,14 @@ public class MainWindow {
     private void setupMenu() {
         JMenuBar menuBar = new JMenuBar();
 
-        JMenu listingsMenu = new JMenu("Listings");
+        JMenu listingsMenu = new JMenu("Výpisy");
 
         JMenuItem menuItem;
 
         addMenuItem(listingsMenu, "Obdobia platcov", () -> new ListTaxPayingPeriodsView(application));
         addMenuItem(listingsMenu, "Zloženie príjmov", () -> new ListIncomeCompositionsView(application));
         addMenuItem(listingsMenu, "Právnické osoby - neplatiči", () -> new ListTaxPayersWhoDidntPayedView(application));
-        addMenuItem(listingsMenu, "Firmy", () -> new ListCompanies(application));
+        addMenuItem(listingsMenu, "Spoločnosti", () -> new ListCompanies(application));
         addMenuItem(listingsMenu, "Vlastníci firiem", () -> new ListCompaniesOwners(application));
         addMenuItem(listingsMenu, "Prehľad daní", () -> new ListTaxesOverview(application));
         addMenuItem(listingsMenu, "Daň zo zisku - pokles", () -> new ListTaxPaymentsWithDecline(application));
@@ -66,7 +66,7 @@ public class MainWindow {
 
         menuBar.add(listingsMenu);
 
-        JMenuItem addsMenu = new JMenu("Add");
+        JMenuItem addsMenu = new JMenu("Pridať");
 
         addMenuItem(addsMenu, "Nová platba", () -> new NewPaymentView(application));
 
