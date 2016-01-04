@@ -7,17 +7,18 @@ import sk.fri.uniza.db.sem.db.model.*;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
 
     private static final SelectFunction
             LIST_TAX_PAYING_PERIODS = new SelectFunction(
-                    "f_du_obdobie_platca",
-                    OracleTypes.VARCHAR,
-                    OracleTypes.VARCHAR
-            ),
+            "f_du_obdobie_platca",
+            OracleTypes.VARCHAR,
+            OracleTypes.VARCHAR
+    ),
             LIST_INCOME_COMPOSITIONS = new SelectFunction(
                     "f_du_zlozenie_prijmov",
                     OracleTypes.VARCHAR,
@@ -78,14 +79,14 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
 
     private static final PostProcedure
             POST_NEW_PAYMENT = new PostProcedure(
-                    "p_du_vloz_platbu",
-                    OracleTypes.INTEGER,
-                    OracleTypes.INTEGER,
-                    OracleTypes.VARCHAR,
-                    OracleTypes.INTEGER,
-                    OracleTypes.VARCHAR,
-                    OracleTypes.VARCHAR
-            );
+            "p_du_vloz_platbu",
+            OracleTypes.INTEGER,
+            OracleTypes.INTEGER,
+            OracleTypes.VARCHAR,
+            OracleTypes.INTEGER,
+            OracleTypes.VARCHAR,
+            OracleTypes.VARCHAR
+    );
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -385,7 +386,7 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
             return true;
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
-            throw new IllegalStateException(e);
+            return false;
         }
     }
 
@@ -413,8 +414,9 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
 
             onStatementCreated(s);
 
+            int indexOffset = getIndexOffset();
             for (int i = 0; i < paramTypes.length; i++) {
-                s.setObject(i + 2, params[i], paramTypes[i]);
+                s.setObject(i + indexOffset, params[i], paramTypes[i]);
             }
 
             s.execute();
@@ -427,6 +429,8 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
         protected abstract void onStatementCreated(CallableStatement s) throws SQLException;
 
         protected abstract void onStatementExecuted(CallableStatement s) throws SQLException;
+
+        protected abstract int getIndexOffset();
 
         protected String createStringParams(int count) {
 
@@ -468,6 +472,11 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
             this.resultSet = (ResultSet) s.getObject(1);
         }
 
+        @Override
+        protected int getIndexOffset() {
+            return 2;
+        }
+
         public List<T> map(Mapper<T> mapper) throws Exception {
             List<T> data = new LinkedList<>();
 
@@ -499,6 +508,11 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
 
         @Override
         protected void onStatementExecuted(CallableStatement s) {
+        }
+
+        @Override
+        protected int getIndexOffset() {
+            return 1;
         }
     }
 

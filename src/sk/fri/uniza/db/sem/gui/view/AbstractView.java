@@ -5,7 +5,6 @@ import sk.fri.uniza.db.sem.util.DataWorker;
 import sk.fri.uniza.db.sem.util.Listener;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,8 +80,7 @@ public abstract class AbstractView extends JPanel implements View {
 
         if (loading) {
             show(loadingComponent);
-        }
-        else {
+        } else {
             show(contentComponent);
         }
     }

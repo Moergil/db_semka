@@ -7,14 +7,13 @@ import sk.fri.uniza.db.sem.util.InputParser;
 import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
 public class ListChanges extends ProviderTableView<JuridicalPersonName, ListChanges.TimeRangeParams> {
 
     private static final String COLUMNS[] = {
-        "Názov"
+            "Názov"
     };
 
     private final JTextField dateFromField;

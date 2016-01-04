@@ -2,7 +2,7 @@ package sk.fri.uniza.db.sem.db.model;
 
 import java.util.Date;
 
-public class TaxType extends DbRow{
+public class TaxType extends DbRow {
 
     private final int type;
     private final String name;

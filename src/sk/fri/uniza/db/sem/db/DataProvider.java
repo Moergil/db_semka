@@ -8,6 +8,7 @@ import java.util.List;
 public interface DataProvider {
 
     void open() throws Exception;
+
     void close();
 
     List<TaxPayingPeriod> listTaxPayingPeriods(Date from, Date to);

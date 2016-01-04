@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class MainWindow {
 
-    private static final Dimension MIN_SIZE = new Dimension(600, 400);
+    private static final Dimension MIN_SIZE = new Dimension(800, 400);
 
     private static final String TITLE = "Daňový úrad";
 
@@ -88,12 +88,12 @@ public class MainWindow {
     public void setContent(Container content) {
         String layoutPart = BorderLayout.CENTER;
 
-        BorderLayout layout = (BorderLayout)contentPane.getLayout();
+        BorderLayout layout = (BorderLayout) contentPane.getLayout();
         Component actualComponent = layout.getLayoutComponent(layoutPart);
 
         if (actualComponent != null) {
             if (actualComponent instanceof View) {
-                View previousView = (View)actualComponent;
+                View previousView = (View) actualComponent;
                 previousView.onHide();
             }
 

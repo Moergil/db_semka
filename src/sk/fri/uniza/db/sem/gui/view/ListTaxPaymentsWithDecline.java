@@ -4,7 +4,6 @@ import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
 import sk.fri.uniza.db.sem.db.model.TaxPayment;
 
-import javax.swing.table.TableModel;
 import java.util.List;
 
 public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Void> {

@@ -10,7 +10,7 @@ import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.Date;
 import java.util.List;
 
 public class NewPaymentView extends FormView {
@@ -38,7 +38,7 @@ public class NewPaymentView extends FormView {
 
         taxPayerComboBox = new JComboBox<>();
         taxPayerComboBox.addActionListener((e) -> {
-            TaxPayer selected = (TaxPayer)taxPayerComboBox.getSelectedObjects()[0];
+            TaxPayer selected = (TaxPayer) taxPayerComboBox.getSelectedObjects()[0];
             load(selected, this::loadTaxTypesForTaxPayer, this::onTaxTypesForTaxPayerLoaded);
         });
         taxTypeComboBox = new JComboBox<>();
@@ -136,7 +136,7 @@ public class NewPaymentView extends FormView {
         taxPayerComboBox.setModel(model);
 
         if (!taxPayers.isEmpty()) {
-            TaxPayer first = (TaxPayer)taxPayerComboBox.getSelectedObjects()[0];
+            TaxPayer first = (TaxPayer) taxPayerComboBox.getSelectedObjects()[0];
             load(first, this::loadTaxTypesForTaxPayer, this::onTaxTypesForTaxPayerLoaded);
         }
 
@@ -172,7 +172,7 @@ public class NewPaymentView extends FormView {
 
             Date payed = null;
             if (!datePaymentPayedField.getText().isEmpty()) {
-                InputParser.parseDate(datePaymentPayedField.getText());
+                payed = InputParser.parseDate(datePaymentPayedField.getText());
             }
 
             int amount = InputParser.parseInt(amountField.getText());
@@ -180,8 +180,7 @@ public class NewPaymentView extends FormView {
             SendParams params = new SendParams(payer, taxType, created, payed, amount);
 
             load(params, this::sendForm, this::onFormSent);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // swallow, dialog is shown by InputParser
         }
     }
@@ -202,16 +201,16 @@ public class NewPaymentView extends FormView {
         String message;
         if (result) {
             message = "Platba bola spracovaná.";
-        }
-        else {
+        } else {
             message = "Spracovanie platby zlyhalo.";
         }
 
         JOptionPane.showMessageDialog(null, message);
 
-        if (result) {
-            // TODO hide or reset form
-        }
+        datePaymentCreationField.setText("");
+        datePaymentPayedField.setText("");
+        amountField.setText("");
+        setLoading(false);
     }
 
     private static class SendParams {

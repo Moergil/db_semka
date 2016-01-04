@@ -3,7 +3,6 @@ package sk.fri.uniza.db.sem.gui.view;
 import sk.fri.uniza.db.sem.Application;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.List;

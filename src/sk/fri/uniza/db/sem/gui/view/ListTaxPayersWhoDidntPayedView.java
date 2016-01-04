@@ -46,7 +46,7 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<TaxPayer, 
     }
 
     private TaxType createParams() {
-        return (TaxType)taxTypeComboBox.getSelectedObjects()[0];
+        return (TaxType) taxTypeComboBox.getSelectedObjects()[0];
     }
 
     @Override

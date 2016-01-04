@@ -1,6 +1,5 @@
 package sk.fri.uniza.db.sem.gui.view;
 
-import com.sun.tools.doclets.internal.toolkit.util.DocFinder;
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.Config;
 import sk.fri.uniza.db.sem.db.DataProvider;

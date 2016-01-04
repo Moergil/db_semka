@@ -117,7 +117,7 @@ public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.Top
             String yearText = yearField.getText();
             int year = InputParser.parseYear(yearText, 1900, 2020); // TODO hardcoded
 
-            TaxType taxType = (TaxType)taxTypesComboBox.getSelectedObjects()[0];
+            TaxType taxType = (TaxType) taxTypesComboBox.getSelectedObjects()[0];
 
             return new TopPayerParams(year, taxType);
         } catch (Exception e) {

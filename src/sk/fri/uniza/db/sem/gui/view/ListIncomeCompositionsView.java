@@ -6,13 +6,12 @@ import sk.fri.uniza.db.sem.db.DataProvider;
 import sk.fri.uniza.db.sem.db.model.IncomeComposition;
 import sk.fri.uniza.db.sem.db.model.SubjectType;
 import sk.fri.uniza.db.sem.db.model.TaxType;
-import sk.fri.uniza.db.sem.util.InputParser;
 import sk.fri.uniza.db.sem.util.DataWorker;
+import sk.fri.uniza.db.sem.util.InputParser;
 import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -113,8 +112,8 @@ public class ListIncomeCompositionsView extends ProviderTableView<IncomeComposit
             String dateToText = dateToField.getText();
             Date dateTo = InputParser.parseDate(dateToText);
 
-            TaxType taxType = (TaxType)taxTypesComboBox.getSelectedObjects()[0];
-            SubjectType subjectType = (SubjectType)subjectTypesComboBox.getSelectedObjects()[0];
+            TaxType taxType = (TaxType) taxTypesComboBox.getSelectedObjects()[0];
+            SubjectType subjectType = (SubjectType) subjectTypesComboBox.getSelectedObjects()[0];
 
             return new IncomeCompositionParams(dateFrom, dateTo, taxType.getType(), subjectType.getType());
         } catch (Exception e) {

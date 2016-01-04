@@ -2,8 +2,6 @@ package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
 
-import javax.swing.*;
-
 public interface View {
 
     Application getApplication();
@@ -11,6 +9,7 @@ public interface View {
     String getTitle();
 
     void onShow();
+
     void onHide();
 
 }

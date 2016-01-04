@@ -57,7 +57,7 @@ public class InputParser {
             throw new NoSuchElementException("Items are null or empty.");
         }
 
-        return (T)items[0];
+        return (T) items[0];
     }
 
 }
