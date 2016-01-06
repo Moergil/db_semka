@@ -82,7 +82,6 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
             "p_du_vloz_platbu",
             OracleTypes.INTEGER,
             OracleTypes.INTEGER,
-            OracleTypes.VARCHAR,
             OracleTypes.INTEGER,
             OracleTypes.VARCHAR,
             OracleTypes.VARCHAR
@@ -216,11 +215,10 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     public boolean sentPayment(TaxPayer taxPayer, TaxType taxType, Date created, Date payed, int amount) {
         int idTaxPayer = taxPayer.getId();
         int idTaxType = taxType.getType();
-        String dateTaxTypeFrom = dateToString(taxType.getDateFrom());
         int amountPayed = amount;
         String datePaymentCreation = dateToString(created);
         String datePaymentPayed = (payed != null) ? dateToString(payed) : null;
-        return post(POST_NEW_PAYMENT, idTaxPayer, idTaxType, dateTaxTypeFrom, amountPayed, datePaymentCreation, datePaymentPayed);
+        return post(POST_NEW_PAYMENT, idTaxPayer, idTaxType, amountPayed, datePaymentCreation, datePaymentPayed);
     }
 
     private <T extends DbRow> List<T> list(SelectFunction selectFunction, Mapper<T> mapper, Object... params) {
