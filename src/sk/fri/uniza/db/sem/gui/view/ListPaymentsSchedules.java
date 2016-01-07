@@ -18,8 +18,7 @@ import java.util.List;
 public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, ListPaymentsSchedules.PaymentSchedulesParams> {
 
     private static final String COLUMNS[] = {
-            "<<id platcu>>",
-            "<<typ dane>>",
+            "Názov dane",
             "Dátum vzniku",
             "Suma",
             "Dlh"

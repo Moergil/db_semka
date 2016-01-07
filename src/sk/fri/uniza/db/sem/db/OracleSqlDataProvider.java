@@ -323,13 +323,12 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     @Override
     public List<PaymentSchedule> listPaymentsSchedules(TaxPayer taxPayer, TaxType taxType, Date from, Date to) {
         Mapper<PaymentSchedule> mapper = (rs) -> {
-            int payerId = rs.getInt(1);
-            int rawTaxType = rs.getInt(2);
-            Date creation = stringToDate(rs.getString(3));
-            int amount = rs.getInt(4);
-            int debt = rs.getInt(5);
+            String taxName = rs.getString(1);
+            Date creation = stringToDate(rs.getString(2));
+            int amount = rs.getInt(3);
+            int debt = rs.getInt(4);
 
-            return new PaymentSchedule(payerId, rawTaxType, creation, amount, debt);
+            return new PaymentSchedule(taxName, creation, amount, debt);
         };
 
         int taxPayerId = taxPayer.getId();
