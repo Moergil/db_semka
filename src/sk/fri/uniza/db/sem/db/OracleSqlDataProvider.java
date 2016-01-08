@@ -75,7 +75,8 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
                     "f_du_zobraz_top_platcov",
                     OracleTypes.INTEGER,
                     OracleTypes.INTEGER
-            );
+            ),
+            LIST_ALLOWED_TAXES = new SelectFunction("f_du_povolene_dane");
 
     private static final PostProcedure
             POST_NEW_PAYMENT = new PostProcedure(
@@ -96,6 +97,11 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
                     OracleTypes.INTEGER,
                     OracleTypes.VARCHAR,
                     OracleTypes.VARCHAR
+            ),
+            POST_TAX_AFFILIATION = new PostProcedure(
+                    "p_du_pridaj_dan_prislusnost",
+                    OracleTypes.INTEGER,
+                    OracleTypes.INTEGER
             );
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -399,6 +405,26 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
         String dateToString = dateToString(validDateTo);
 
         return post(POST_TAX_SETTING, taxTypeInt, percent, dateFromString, dateToString);
+    }
+
+    @Override
+    public List<TaxType> listAllowedTaxes() {
+        Mapper<TaxType> mapper = (rs) -> {
+            int type = rs.getInt(1);
+            String name = rs.getString(2);
+
+            return new TaxType(type, name, null);
+        };
+
+        return list(LIST_ALLOWED_TAXES, mapper);
+    }
+
+    @Override
+    public boolean setTaxAffiliation(TaxPayer taxPayer, TaxType taxType) {
+        int taxPayerId = taxPayer.getId();
+        int taxTypeId = taxType.getType();
+
+        return post(POST_TAX_AFFILIATION, taxPayerId, taxTypeId);
     }
 
     private boolean post(PostProcedure postProcedure, Object... params) {

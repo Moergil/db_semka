@@ -71,6 +71,7 @@ public class MainWindow {
         addMenuItem(addsMenu, "Nová platba", () -> new NewPaymentView(application));
         addMenuItem(addsMenu, "Nový typ dane", () -> new NewTaxTypeView(application));
         addMenuItem(addsMenu, "Nastavenie dane", () -> new TaxSettingView(application));
+        addMenuItem(addsMenu, "Príslušnosť k dani", () -> new TaxAffiliationView(application));
 
         menuBar.add(addsMenu);
 

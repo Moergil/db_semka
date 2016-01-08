@@ -51,4 +51,8 @@ public interface DataProvider {
 
     boolean setTax(TaxType taxType, int percent, Date validDateFrom, Date validToFrom);
 
+    List<TaxType> listAllowedTaxes();
+
+    boolean setTaxAffiliation(TaxPayer taxPayer, TaxType taxType);
+
 }
