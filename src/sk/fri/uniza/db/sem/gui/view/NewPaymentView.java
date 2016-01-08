@@ -15,10 +15,6 @@ import java.util.List;
 
 public class NewPaymentView extends FormView {
 
-    private static final int
-            DATA_TYPE_TAX_PAYERS = 1,
-            DATA_TYPE_TAX_TYPE_FOR_TAX_PAYER = 2;
-
     private final JPanel contentComponent;
 
     private final JComboBox<TaxPayer> taxPayerComboBox;
@@ -104,9 +100,7 @@ public class NewPaymentView extends FormView {
         c.gridwidth = 2;
 
         submitButton = new JButton(Strings.PAY);
-        submitButton.addActionListener((e) -> {
-            processForm();
-        });
+        submitButton.addActionListener((e) -> processForm());
         submitButton.setEnabled(false);
         contentComponent.add(submitButton, c);
 

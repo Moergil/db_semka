@@ -69,6 +69,7 @@ public class MainWindow {
         JMenuItem addsMenu = new JMenu("Pridať");
 
         addMenuItem(addsMenu, "Nová platba", () -> new NewPaymentView(application));
+        addMenuItem(addsMenu, "Nový typ dane", () -> new NewTaxTypeView(application));
 
         menuBar.add(addsMenu);
 

@@ -47,4 +47,6 @@ public interface DataProvider {
 
     List<TopPayer> listTopPayers(int year, TaxType taxType);
 
+    boolean addTaxType(String taxType);
+
 }
