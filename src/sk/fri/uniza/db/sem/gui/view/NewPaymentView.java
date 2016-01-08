@@ -39,7 +39,7 @@ public class NewPaymentView extends FormView {
         });
         taxTypeComboBox = new JComboBox<>();
 
-        int dateInputColumns = Config.GUI_DATE_INPUT_COLUMNS;
+        int dateInputColumns = Config.DATE_MAX_LENGTH;
         datePaymentCreationField = new JTextField(dateInputColumns);
         datePaymentPayedField = new JTextField(dateInputColumns);
         amountField = new JTextField(10);
@@ -132,9 +132,9 @@ public class NewPaymentView extends FormView {
         if (!taxPayers.isEmpty()) {
             TaxPayer first = (TaxPayer) taxPayerComboBox.getSelectedObjects()[0];
             load(first, this::loadTaxTypesForTaxPayer, this::onTaxTypesForTaxPayerLoaded);
+        } else {
+            setLoading(false);
         }
-
-        setLoading(false);
     }
 
     private List<TaxType> loadTaxTypesForTaxPayer(TaxPayer taxPayer) {
@@ -160,7 +160,18 @@ public class NewPaymentView extends FormView {
 
     private void processForm() {
         try {
+            if (taxPayerComboBox.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, Strings.NO_TAX_PAYER_SELECTED_ERROR);
+                return;
+            }
+
             TaxPayer payer = (TaxPayer) taxPayerComboBox.getSelectedObjects()[0];
+
+            if (taxTypeComboBox.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, Strings.NO_TAX_TYPE_SELECTED_ERROR);
+                return;
+            }
+
             TaxType taxType = (TaxType) taxTypeComboBox.getSelectedObjects()[0];
             Date created = InputParser.parseDate(datePaymentCreationField.getText());
 

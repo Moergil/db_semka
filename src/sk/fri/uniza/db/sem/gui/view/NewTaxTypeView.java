@@ -2,32 +2,32 @@ package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.TaxPayer;
-import sk.fri.uniza.db.sem.db.model.TaxType;
-import sk.fri.uniza.db.sem.util.InputParser;
+import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
-import java.util.Date;
 
 public class NewTaxTypeView extends FormView {
 
-    private final JPanel contentPanel;
+    private final JPanel contentComponent;
 
     private final JTextField taxTypeNameField;
 
     public NewTaxTypeView(Application application) {
         super(application);
 
-        contentPanel = new JPanel();
+        contentComponent = new JPanel();
+
+        JLabel taxTypeNameLabel = new JLabel(Strings.TAX_TYPE);
+        contentComponent.add(taxTypeNameLabel);
 
         taxTypeNameField = new JTextField(30);
-        contentPanel.add(taxTypeNameField);
+        contentComponent.add(taxTypeNameField);
 
-        JButton submitButton = new JButton("Pridať");
+        JButton submitButton = new JButton(Strings.ADD);
         submitButton.addActionListener((e) -> processForm());
-        contentPanel.add(submitButton);
+        contentComponent.add(submitButton);
 
-        setContentComponent(contentPanel);
+        setContentComponent(contentComponent);
     }
 
     @Override

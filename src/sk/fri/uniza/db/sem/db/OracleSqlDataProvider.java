@@ -89,6 +89,13 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
             POST_NEW_TAX_TYPE = new PostProcedure(
                     "p_du_vloz_novy_typ_dane",
                     OracleTypes.VARCHAR
+            ),
+            POST_TAX_SETTING = new PostProcedure(
+                    "p_du_nastav_dan",
+                    OracleTypes.INTEGER,
+                    OracleTypes.INTEGER,
+                    OracleTypes.VARCHAR,
+                    OracleTypes.VARCHAR
             );
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -383,6 +390,15 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     @Override
     public boolean addTaxType(String taxType) {
         return post(POST_NEW_TAX_TYPE, taxType);
+    }
+
+    @Override
+    public boolean setTax(TaxType taxType, int percent, Date validDateFrom, Date validDateTo) {
+        int taxTypeInt = taxType.getType();
+        String dateFromString = dateToString(validDateFrom);
+        String dateToString = dateToString(validDateTo);
+
+        return post(POST_TAX_SETTING, taxTypeInt, percent, dateFromString, dateToString);
     }
 
     private boolean post(PostProcedure postProcedure, Object... params) {

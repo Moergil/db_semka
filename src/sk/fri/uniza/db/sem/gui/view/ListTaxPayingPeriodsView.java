@@ -27,7 +27,7 @@ public class ListTaxPayingPeriodsView extends ProviderTableView<TaxPayingPeriod,
     public ListTaxPayingPeriodsView(Application application) {
         super(application);
 
-        int dateInputColumns = Config.GUI_DATE_INPUT_COLUMNS;
+        int dateInputColumns = Config.DATE_MAX_LENGTH;
         dateFromField = new JTextField(dateInputColumns);
         dateToField = new JTextField(dateInputColumns);
 

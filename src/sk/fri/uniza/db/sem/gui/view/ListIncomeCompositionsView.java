@@ -37,7 +37,7 @@ public class ListIncomeCompositionsView extends ProviderTableView<IncomeComposit
     public ListIncomeCompositionsView(Application application) {
         super(application);
 
-        int dateInputColumns = Config.GUI_DATE_INPUT_COLUMNS;
+        int dateInputColumns = Config.DATE_MAX_LENGTH;
         dateFromField = new JTextField(dateInputColumns);
         dateToField = new JTextField(dateInputColumns);
 

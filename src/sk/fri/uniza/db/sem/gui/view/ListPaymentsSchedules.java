@@ -44,8 +44,8 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
         this.taxPayerComboBox = new JComboBox<>();
         this.taxTypeComboBox = new JComboBox<>();
 
-        this.dateFromField = new JTextField(Config.DATE_MAX_LENGHT);
-        this.dateToField = new JTextField(Config.DATE_MAX_LENGHT);
+        this.dateFromField = new JTextField(Config.DATE_MAX_LENGTH);
+        this.dateToField = new JTextField(Config.DATE_MAX_LENGTH);
 
         JToolBar toolbar = createToolbar();
         setToolbar(toolbar);

@@ -49,4 +49,6 @@ public interface DataProvider {
 
     boolean addTaxType(String taxType);
 
+    boolean setTax(TaxType taxType, int percent, Date validDateFrom, Date validToFrom);
+
 }
