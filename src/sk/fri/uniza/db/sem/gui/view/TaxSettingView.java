@@ -51,12 +51,12 @@ public class TaxSettingView extends FormView {
 
         c.gridx++;
 
-        JLabel percentLabel = new JLabel("%");
-        contentComponent.add(percentLabel, c);
+        contentComponent.add(taxPercentField, c);
 
         c.gridx++;
 
-        contentComponent.add(taxPercentField, c);
+        JLabel percentLabel = new JLabel("%");
+        contentComponent.add(percentLabel, c);
 
         c.gridx = 0;
         c.gridy++;
