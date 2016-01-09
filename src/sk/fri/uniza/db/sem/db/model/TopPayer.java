@@ -2,36 +2,42 @@ package sk.fri.uniza.db.sem.db.model;
 
 public class TopPayer extends DbRow {
 
-    private final TaxPayer[] taxPayers;
-    private int payerId;
-    private int taxType;
-    private int together;
+    private final String taxPayerName;
+    private final int taxPayerId;
+    private final int taxTypeId;
+    private final int total;
+    private final int cumDist;
 
-    public TopPayer(TaxPayer[] taxPayers, int payerId, int taxType, int together) {
-        this.taxPayers = taxPayers;
-        this.payerId = payerId;
-        this.taxType = taxType;
-        this.together = together;
+    public TopPayer(String taxPayerName, int taxPayerId, int taxTypeId, int total, int cumDist) {
+        this.taxPayerName = taxPayerName;
+        this.taxPayerId = taxPayerId;
+        this.taxTypeId = taxTypeId;
+        this.total = total;
+        this.cumDist = cumDist;
     }
 
-    public TaxPayer[] getTaxPayers() {
-        return taxPayers;
+    public String getTaxPayerName() {
+        return taxPayerName;
     }
 
-    public int getPayerId() {
-        return payerId;
+    public int getTaxPayerId() {
+        return taxPayerId;
     }
 
-    public int getTaxType() {
-        return taxType;
+    public int getTaxTypeId() {
+        return taxTypeId;
     }
 
-    public int getTogether() {
-        return together;
+    public int getTotal() {
+        return total;
+    }
+
+    public int getCumDist() {
+        return cumDist;
     }
 
     @Override
     public Object[] getValues() {
-        return toRow(taxPayers, payerId, taxType, together);
+        return toRow(taxPayerName, total);
     }
 }

@@ -16,7 +16,6 @@ public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.Top
 
     private static final String COLUMNS[] = {
             "Platca",
-            "Typ dane",
             "Spolu"
     };
 

@@ -389,8 +389,13 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     @Override
     public List<TopPayer> listTopPayers(int year, TaxType taxType) {
         Mapper<TopPayer> mapper = (rs) -> {
-            // TODO interface is defined in some wtf way
-            return null;
+            String taxPayerName = rs.getString(1);
+            int taxPayerId = rs.getInt(2);
+            int taxTypeId = rs.getInt(3);
+            int total = rs.getInt(4);
+            int cumDist = rs.getInt(5);
+
+            return new TopPayer(taxPayerName, taxPayerId, taxTypeId, total, cumDist);
         };
 
         return list(LIST_TOP_PAYERS, mapper, year, taxType.getType());
