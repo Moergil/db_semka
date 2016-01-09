@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class TaxPayerMean extends DbRow {
+public class TaxPayerMean {
 
     private final int taxPayerId;
     private final String taxPayerName;
@@ -30,8 +30,4 @@ public class TaxPayerMean extends DbRow {
         return meanOthers;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(taxPayerId, taxPayerName, mean, meanOthers);
-    }
 }

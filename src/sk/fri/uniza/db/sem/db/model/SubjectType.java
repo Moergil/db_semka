@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class SubjectType extends DbRow {
+public class SubjectType {
 
     private final int type;
     private final String name;
@@ -19,12 +19,7 @@ public class SubjectType extends DbRow {
     }
 
     @Override
-    public Object[] getValues() {
-        return toRow(type, name);
-    }
-
-    @Override
     public String toString() {
-        return getName();
+        return name;
     }
 }

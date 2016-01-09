@@ -24,8 +24,8 @@ public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.Top
 
     private DataWorker<Void, TaxType[]> taxTypesLoader;
 
-    public ListTopPayers(Application application) {
-        super(application);
+    public ListTopPayers(Application application, String title) {
+        super(application, title);
 
         this.yearField = new JTextField(4);
         this.taxTypesComboBox = new JComboBox<>();
@@ -107,8 +107,8 @@ public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.Top
     }
 
     @Override
-    public String getTitle() {
-        return "Top platci";
+    protected Object[] mapRow(TopPayer data) {
+        return toRow(data.getTaxPayerName(), data.getTotal());
     }
 
     private TopPayerParams createParams() {

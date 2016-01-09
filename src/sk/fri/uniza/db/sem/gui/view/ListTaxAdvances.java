@@ -16,8 +16,8 @@ public class ListTaxAdvances extends ProviderTableView<TaxAdvance, Void> {
             "Mesačný preddavok o rok"
     };
 
-    public ListTaxAdvances(Application application) {
-        super(application);
+    public ListTaxAdvances(Application application, String title) {
+        super(application, title);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ListTaxAdvances extends ProviderTableView<TaxAdvance, Void> {
     }
 
     @Override
-    public String getTitle() {
-        return "Preddavky na daň";
+    protected Object[] mapRow(TaxAdvance data) {
+        return toRow(data.getDic(), data.getName(), data.getIco(), data.getTotalTaxDuty(), data.getMonthAdvancementInNextYear());
     }
 }

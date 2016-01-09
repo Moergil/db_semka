@@ -4,8 +4,8 @@ import sk.fri.uniza.db.sem.Application;
 
 public abstract class FormView extends AbstractView {
 
-    public FormView(Application application) {
-        super(application);
+    public FormView(Application application, String title) {
+        super(application, title);
     }
 
 }

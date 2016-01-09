@@ -2,16 +2,15 @@ package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.DbRow;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.util.List;
 
-public abstract class ProviderTableView<T extends DbRow, P> extends TableView<T, P> {
+public abstract class ProviderTableView<T, P> extends TableView<T, P> {
 
-    public ProviderTableView(Application application) {
-        super(application);
+    public ProviderTableView(Application application, String title) {
+        super(application, title);
     }
 
     protected abstract List<T> loadTableDataFromProvider(DataProvider provider, P params);
@@ -28,9 +27,10 @@ public abstract class ProviderTableView<T extends DbRow, P> extends TableView<T,
 
         for (int i = 0; i < data.size(); i++) {
             T row = data.get(i);
-            tm.addRow(row.getValues());
+            tm.addRow(mapRow(row));
         }
 
         return tm;
     }
+
 }

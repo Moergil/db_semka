@@ -2,7 +2,7 @@ package sk.fri.uniza.db.sem.db.model;
 
 import java.util.Date;
 
-public class PaymentSchedule extends DbRow {
+public class PaymentSchedule {
 
     private final String taxName;
     private final Date creation;
@@ -32,8 +32,4 @@ public class PaymentSchedule extends DbRow {
         return debt;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(taxName, creation, amount, debt);
-    }
 }

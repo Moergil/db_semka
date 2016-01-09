@@ -15,8 +15,8 @@ public abstract class TableView<T, P> extends AbstractView {
 
     private final String[] columns;
 
-    public TableView(Application application) {
-        super(application);
+    public TableView(Application application, String title) {
+        super(application, title);
 
         contentComponent = new JPanel();
         contentComponent.setLayout(new BorderLayout());
@@ -58,5 +58,11 @@ public abstract class TableView<T, P> extends AbstractView {
     protected abstract String[] createColumns();
 
     protected abstract TableModel onTableDataLoaded(List<T> data);
+
+    protected abstract Object[] mapRow(T data);
+
+    protected Object[] toRow(Object... objects) {
+        return objects;
+    }
 
 }

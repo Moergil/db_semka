@@ -12,16 +12,17 @@ import java.util.List;
 public abstract class AbstractView extends JPanel implements View {
 
     private final Application application;
+    private final String title;
 
     private JPanel loadingComponent;
 
     private JPanel contentComponent;
 
     private final List<DataWorker> workers = new ArrayList<>();
-    private boolean loading;
 
-    public AbstractView(Application application) {
+    public AbstractView(Application application, String title) {
         this.application = application;
+        this.title = title;
 
         this.loadingComponent = createLoadingComponent();
 
@@ -31,6 +32,11 @@ public abstract class AbstractView extends JPanel implements View {
     @Override
     public Application getApplication() {
         return application;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
     }
 
     @Override

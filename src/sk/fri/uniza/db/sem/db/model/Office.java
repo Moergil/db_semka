@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class Office extends DbRow {
+public class Office {
 
     private final String name;
 
@@ -12,8 +12,4 @@ public class Office extends DbRow {
         return name;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(name);
-    }
 }

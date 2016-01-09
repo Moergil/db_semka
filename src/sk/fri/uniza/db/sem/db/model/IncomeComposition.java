@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class IncomeComposition extends DbRow {
+public class IncomeComposition {
 
     private final int year;
     private final int month;
@@ -28,11 +28,6 @@ public class IncomeComposition extends DbRow {
 
     public float getIncomeRatio() {
         return incomeRatio;
-    }
-
-    @Override
-    public Object[] getValues() {
-        return toRow(year, month, townName, incomeRatio);
     }
 
 }

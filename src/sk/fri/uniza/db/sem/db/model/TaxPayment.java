@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class TaxPayment extends DbRow {
+public class TaxPayment {
 
     private final int taxPayerId;
     private final String taxPayerName;
@@ -30,8 +30,4 @@ public class TaxPayment extends DbRow {
         return tax;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(taxPayerName, year, tax);
-    }
 }

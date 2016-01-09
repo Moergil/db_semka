@@ -13,8 +13,8 @@ public class ListCompanies extends ProviderTableView<Company, Void> {
             "DIC"
     };
 
-    public ListCompanies(Application application) {
-        super(application);
+    public ListCompanies(Application application, String title) {
+        super(application, title);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ListCompanies extends ProviderTableView<Company, Void> {
     }
 
     @Override
-    public String getTitle() {
-        return "Spoločnosti";
+    protected Object[] mapRow(Company data) {
+        return toRow(data.getName(), data.getDic());
     }
 }

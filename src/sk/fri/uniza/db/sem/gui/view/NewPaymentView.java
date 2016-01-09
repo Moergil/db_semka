@@ -26,8 +26,8 @@ public class NewPaymentView extends FormView {
 
     private final JButton submitButton;
 
-    public NewPaymentView(Application application) {
-        super(application);
+    public NewPaymentView(Application application, String title) {
+        super(application, title);
 
         contentComponent = new JPanel();
         contentComponent.setLayout(new GridBagLayout());
@@ -105,11 +105,6 @@ public class NewPaymentView extends FormView {
         contentComponent.add(submitButton, c);
 
         setContentComponent(contentComponent);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Nová platba";
     }
 
     @Override

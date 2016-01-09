@@ -14,8 +14,8 @@ public class ListCompaniesOwners extends ProviderTableView<CompanyOwner, Void> {
             "DIC",
     };
 
-    public ListCompaniesOwners(Application application) {
-        super(application);
+    public ListCompaniesOwners(Application application, String title) {
+        super(application, title);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ListCompaniesOwners extends ProviderTableView<CompanyOwner, Void> {
     }
 
     @Override
-    public String getTitle() {
-        return "Podnikatelia";
+    protected Object[] mapRow(CompanyOwner data) {
+        return toRow(data.getFirstname(), data.getSurname(), data.getDic());
     }
 }

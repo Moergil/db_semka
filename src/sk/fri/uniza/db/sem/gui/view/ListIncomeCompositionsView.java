@@ -34,8 +34,8 @@ public class ListIncomeCompositionsView extends ProviderTableView<IncomeComposit
 
     private DataWorker<Void, TaxType[]> taxTypesLoader;
 
-    public ListIncomeCompositionsView(Application application) {
-        super(application);
+    public ListIncomeCompositionsView(Application application, String title) {
+        super(application, title);
 
         int dateInputColumns = Config.DATE_MAX_LENGTH;
         dateFromField = new JTextField(dateInputColumns);
@@ -164,8 +164,8 @@ public class ListIncomeCompositionsView extends ProviderTableView<IncomeComposit
     }
 
     @Override
-    public String getTitle() {
-        return "Zloženie príjmov";
+    protected Object[] mapRow(IncomeComposition data) {
+        return toRow(data.getYear(), data.getMonth(), data.getTownName(), data.getIncomeRatio());
     }
 
     static class IncomeCompositionParams {

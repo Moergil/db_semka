@@ -24,8 +24,8 @@ public class ListTaxPayingPeriodsView extends ProviderTableView<TaxPayingPeriod,
     private final JTextField dateFromField;
     private final JTextField dateToField;
 
-    public ListTaxPayingPeriodsView(Application application) {
-        super(application);
+    public ListTaxPayingPeriodsView(Application application, String title) {
+        super(application, title);
 
         int dateInputColumns = Config.DATE_MAX_LENGTH;
         dateFromField = new JTextField(dateInputColumns);
@@ -55,8 +55,8 @@ public class ListTaxPayingPeriodsView extends ProviderTableView<TaxPayingPeriod,
     }
 
     @Override
-    public String getTitle() {
-        return "Úrad / Dátum / Počet";
+    protected Object[] mapRow(TaxPayingPeriod data) {
+        return toRow(data.getOffice(), data.getMonth(), data.getYear(), data.getPayersCount());
     }
 
     public JToolBar createToolbar() {

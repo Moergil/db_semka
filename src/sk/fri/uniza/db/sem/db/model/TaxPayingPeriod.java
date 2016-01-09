@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class TaxPayingPeriod extends DbRow {
+public class TaxPayingPeriod {
 
     private final String office;
     private final int month;
@@ -30,8 +30,4 @@ public class TaxPayingPeriod extends DbRow {
         return payersCount;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(office, month, year, payersCount);
-    }
 }

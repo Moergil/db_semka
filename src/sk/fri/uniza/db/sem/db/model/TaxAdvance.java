@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class TaxAdvance extends DbRow {
+public class TaxAdvance {
 
     private final int payerId;
     private final String dic;
@@ -42,8 +42,4 @@ public class TaxAdvance extends DbRow {
         return monthAdvancementInNextYear;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(dic, name, ico, totalTaxDuty, monthAdvancementInNextYear);
-    }
 }

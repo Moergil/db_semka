@@ -2,7 +2,7 @@ package sk.fri.uniza.db.sem.db.model;
 
 import java.util.Date;
 
-public class TaxType extends DbRow {
+public class TaxType {
 
     private final int type;
     private final String name;
@@ -27,12 +27,7 @@ public class TaxType extends DbRow {
     }
 
     @Override
-    public Object[] getValues() {
-        return toRow(type, name, dateFrom);
-    }
-
-    @Override
     public String toString() {
-        return getName();
+        return name;
     }
 }

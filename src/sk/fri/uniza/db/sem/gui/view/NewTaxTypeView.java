@@ -12,8 +12,8 @@ public class NewTaxTypeView extends FormView {
 
     private final JTextField taxTypeNameField;
 
-    public NewTaxTypeView(Application application) {
-        super(application);
+    public NewTaxTypeView(Application application, String title) {
+        super(application, title);
 
         contentComponent = new JPanel();
 
@@ -68,11 +68,6 @@ public class NewTaxTypeView extends FormView {
 
         taxTypeNameField.setText("");
         setLoading(false);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Nový typ dane";
     }
 
     private static class SendParams {

@@ -14,8 +14,8 @@ public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Vo
             "Daň"
     };
 
-    public ListTaxPaymentsWithDecline(Application application) {
-        super(application);
+    public ListTaxPaymentsWithDecline(Application application, String title) {
+        super(application, title);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Vo
     }
 
     @Override
-    public String getTitle() {
-        return "Daň zo zisku - pokles";
+    protected Object[] mapRow(TaxPayment data) {
+        return toRow(data.getTaxPayerName(), data.getYear(), data.getTax());
     }
 }

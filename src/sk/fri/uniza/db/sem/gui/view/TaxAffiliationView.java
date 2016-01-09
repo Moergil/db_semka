@@ -22,8 +22,8 @@ public class TaxAffiliationView extends FormView {
 
     private int loadedMap;
 
-    public TaxAffiliationView(Application application) {
-        super(application);
+    public TaxAffiliationView(Application application, String title) {
+        super(application, title);
 
         taxPayerComboBox = new JComboBox<>();
         taxTypeComboBox = new JComboBox<>();
@@ -151,11 +151,6 @@ public class TaxAffiliationView extends FormView {
         JOptionPane.showMessageDialog(null, message);
 
         setLoading(false);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Daňová príslušnoť";
     }
 
     private static class SendParams {

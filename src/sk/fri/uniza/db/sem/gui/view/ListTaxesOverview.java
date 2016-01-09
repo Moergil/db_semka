@@ -31,8 +31,8 @@ public class ListTaxesOverview extends ProviderTableView<Payment, ListTaxesOverv
 
     private int loadingMask;
 
-    public ListTaxesOverview(Application application) {
-        super(application);
+    public ListTaxesOverview(Application application, String title) {
+        super(application, title);
 
         taxPayersComboBox = new JComboBox<>();
         taxTypesComboBox = new JComboBox<>();
@@ -157,8 +157,8 @@ public class ListTaxesOverview extends ProviderTableView<Payment, ListTaxesOverv
     }
 
     @Override
-    public String getTitle() {
-        return "Prehľad daní";
+    protected Object[] mapRow(Payment data) {
+        return toRow(data.getAmount(), data.getPayedDate());
     }
 
     protected static class TaxesOverviewParams {

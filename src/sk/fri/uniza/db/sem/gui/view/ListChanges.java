@@ -19,8 +19,8 @@ public class ListChanges extends ProviderTableView<JuridicalPersonName, ListChan
     private final JTextField dateFromField;
     private final JTextField dateToField;
 
-    public ListChanges(Application application) {
-        super(application);
+    public ListChanges(Application application, String title) {
+        super(application, title);
 
         dateFromField = new JTextField();
         dateToField = new JTextField();
@@ -91,8 +91,8 @@ public class ListChanges extends ProviderTableView<JuridicalPersonName, ListChan
     }
 
     @Override
-    public String getTitle() {
-        return "Vypis zmien";
+    protected Object[] mapRow(JuridicalPersonName data) {
+        return toRow(data.getName());
     }
 
     protected static class TimeRangeParams {

@@ -2,7 +2,7 @@ package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.TaxPayer;
+import sk.fri.uniza.db.sem.db.model.Company;
 import sk.fri.uniza.db.sem.db.model.TaxType;
 import sk.fri.uniza.db.sem.util.DataWorker;
 import sk.fri.uniza.db.sem.util.Strings;
@@ -10,7 +10,7 @@ import sk.fri.uniza.db.sem.util.Strings;
 import javax.swing.*;
 import java.util.List;
 
-public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<TaxPayer, TaxType> {
+public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<Company, TaxType> {
 
     private static final String COLUMNS[] = {
             "DIČ Firmy",
@@ -21,8 +21,8 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<TaxPayer, 
 
     private DataWorker<Void, TaxType[]> taxTypesLoader;
 
-    public ListTaxPayersWhoDidntPayedView(Application application) {
-        super(application);
+    public ListTaxPayersWhoDidntPayedView(Application application, String title) {
+        super(application, title);
 
         taxTypeComboBox = new JComboBox<>();
 
@@ -82,7 +82,7 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<TaxPayer, 
     }
 
     @Override
-    protected List<TaxPayer> loadTableDataFromProvider(DataProvider provider, TaxType params) {
+    protected List<Company> loadTableDataFromProvider(DataProvider provider, TaxType params) {
         return provider.listTaxPayersWhoDidntPayed(params.getType());
     }
 
@@ -92,7 +92,7 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<TaxPayer, 
     }
 
     @Override
-    public String getTitle() {
-        return "Neplatiči Za Posledné Dva Roky";
+    protected Object[] mapRow(Company data) {
+        return toRow(data.getDic(), data.getName());
     }
 }

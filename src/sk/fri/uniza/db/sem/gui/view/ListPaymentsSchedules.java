@@ -38,8 +38,8 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
 
     private int loadingMask;
 
-    public ListPaymentsSchedules(Application application) {
-        super(application);
+    public ListPaymentsSchedules(Application application, String title) {
+        super(application, title);
 
         this.taxPayerComboBox = new JComboBox<>();
         this.taxTypeComboBox = new JComboBox<>();
@@ -172,8 +172,8 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
     }
 
     @Override
-    public String getTitle() {
-        return "Rozpis platieb";
+    protected Object[] mapRow(PaymentSchedule data) {
+        return toRow(data.getTaxName(), data.getCreation(), data.getAmount(), data.getDebt());
     }
 
     private PaymentSchedulesParams createParams() {

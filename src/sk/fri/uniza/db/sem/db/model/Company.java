@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class Company extends DbRow {
+public class Company {
 
     private final String name;
     private final String dic;
@@ -22,11 +22,6 @@ public class Company extends DbRow {
 
     public int getId() {
         return id;
-    }
-
-    @Override
-    public Object[] getValues() {
-        return toRow(name, dic);
     }
 
 }

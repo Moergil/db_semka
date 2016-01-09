@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class JuridicalPersonName extends DbRow {
+public class JuridicalPersonName {
 
     private final String name;
 
@@ -12,8 +12,4 @@ public class JuridicalPersonName extends DbRow {
         return name;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(name);
-    }
 }

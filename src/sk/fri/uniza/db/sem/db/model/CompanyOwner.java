@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class CompanyOwner extends DbRow {
+public class CompanyOwner {
 
     private final String firstname;
     private final String surname;
@@ -30,8 +30,4 @@ public class CompanyOwner extends DbRow {
         return payerId;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(firstname, surname, dic);
-    }
 }

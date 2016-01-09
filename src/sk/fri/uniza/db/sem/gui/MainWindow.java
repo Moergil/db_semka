@@ -52,35 +52,39 @@ public class MainWindow {
 
         JMenuItem menuItem;
 
-        addMenuItem(listingsMenu, "Úrad / Dátum / Počet", () -> new ListTaxPayingPeriodsView(application));
-        addMenuItem(listingsMenu, "Zloženie príjmov", () -> new ListIncomeCompositionsView(application));
-        addMenuItem(listingsMenu, "Právnické osoby - neplatiči", () -> new ListTaxPayersWhoDidntPayedView(application));
-        addMenuItem(listingsMenu, "Spoločnosti", () -> new ListCompanies(application));
-        addMenuItem(listingsMenu, "Vlastníci firiem", () -> new ListCompaniesOwners(application));
-        addMenuItem(listingsMenu, "Prehľad daní", () -> new ListTaxesOverview(application));
-        addMenuItem(listingsMenu, "Daň zo zisku - pokles", () -> new ListTaxPaymentsWithDecline(application));
-        addMenuItem(listingsMenu, "Rozpis platieb", () -> new ListPaymentsSchedules(application));
-        addMenuItem(listingsMenu, "Výpis zmien", () -> new ListChanges(application));
-        addMenuItem(listingsMenu, "Preddavky na daň", () -> new ListTaxAdvances(application));
-        addMenuItem(listingsMenu, "Top platci", () -> new ListTopPayers(application));
+        addMenuItem(listingsMenu, () -> new ListTaxPayingPeriodsView(application, "Úrad / Dátum / Počet"));
+        addMenuItem(listingsMenu, () -> new ListIncomeCompositionsView(application, "Zloženie príjmov"));
+        addMenuItem(listingsMenu, () -> new ListTaxPayersWhoDidntPayedView(application, "Právnické osoby - neplatiči"));
+        addMenuItem(listingsMenu, () -> new ListCompanies(application, "Spoločnosti"));
+        addMenuItem(listingsMenu, () -> new ListCompaniesOwners(application, "Vlastníci firiem"));
+        addMenuItem(listingsMenu, () -> new ListTaxesOverview(application, "Prehľad daní"));
+        addMenuItem(listingsMenu, () -> new ListTaxPaymentsWithDecline(application, "Daň zo zisku - pokles"));
+        addMenuItem(listingsMenu, () -> new ListPaymentsSchedules(application, "Rozpis platieb"));
+        addMenuItem(listingsMenu, () -> new ListChanges(application, "Výpis zmien"));
+        addMenuItem(listingsMenu, () -> new ListTaxAdvances(application, "Preddavky na daň"));
+        addMenuItem(listingsMenu, () -> new ListTopPayers(application, "Top platci"));
 
         menuBar.add(listingsMenu);
 
         JMenuItem addsMenu = new JMenu("Pridať");
 
-        addMenuItem(addsMenu, "Nová platba", () -> new NewPaymentView(application));
-        addMenuItem(addsMenu, "Nový typ dane", () -> new NewTaxTypeView(application));
-        addMenuItem(addsMenu, "Nastavenie dane", () -> new TaxSettingView(application));
-        addMenuItem(addsMenu, "Príslušnosť k dani", () -> new TaxAffiliationView(application));
+        addMenuItem(addsMenu, () -> new NewPaymentView(application, "Nová platba"));
+        addMenuItem(addsMenu, () -> new NewTaxTypeView(application, "Nový typ dane"));
+        addMenuItem(addsMenu, () -> new TaxSettingView(application, "Nastavenie dane"));
+        addMenuItem(addsMenu, () -> new TaxAffiliationView(application, "Príslušnosť k dani"));
 
         menuBar.add(addsMenu);
 
         window.setJMenuBar(menuBar);
     }
 
-    private void addMenuItem(JMenuItem parent, String name, Supplier<JPanel> supplier) {
+    private void addMenuItem(JMenuItem parent, Supplier<View> supplier) {
+        View view = supplier.get();
+
+        String name = view.getTitle();
         JMenuItem menuItem = new JMenuItem(name);
-        menuItem.addActionListener((e) -> setContent(supplier.get()));
+
+        menuItem.addActionListener((e) -> setContent((JComponent) view));
         parent.add(menuItem);
     }
 

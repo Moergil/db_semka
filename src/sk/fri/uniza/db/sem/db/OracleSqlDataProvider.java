@@ -86,7 +86,7 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
             OracleTypes.INTEGER,
             OracleTypes.VARCHAR,
             OracleTypes.VARCHAR
-            ),
+    ),
             POST_NEW_TAX_TYPE = new PostProcedure(
                     "p_du_vloz_novy_typ_dane",
                     OracleTypes.VARCHAR
@@ -217,12 +217,12 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     }
 
     @Override
-    public List<TaxPayer> listTaxPayersWhoDidntPayed(int taxType) {
-        Mapper<TaxPayer> mapper = (rs) -> {
-            int id = rs.getInt(1);
+    public List<Company> listTaxPayersWhoDidntPayed(int taxType) {
+        Mapper<Company> mapper = (rs) -> {
+            String dic = rs.getString(1);
             String name = rs.getString(2);
 
-            return new TaxPayer(id, name);
+            return new Company(name, dic, 0);
         };
 
         return list(LIST_TAX_PAYERS_WHO_DIDNT_PAYED, mapper, taxType);
@@ -238,7 +238,7 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
         return post(POST_NEW_PAYMENT, idTaxPayer, idTaxType, amountPayed, datePaymentCreation, datePaymentPayed);
     }
 
-    private <T extends DbRow> List<T> list(SelectFunction selectFunction, Mapper<T> mapper, Object... params) {
+    private <T> List<T> list(SelectFunction selectFunction, Mapper<T> mapper, Object... params) {
         try {
             selectFunction.execute(connection, params);
             return selectFunction.map(mapper);

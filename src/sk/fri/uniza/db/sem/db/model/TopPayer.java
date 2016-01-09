@@ -1,6 +1,6 @@
 package sk.fri.uniza.db.sem.db.model;
 
-public class TopPayer extends DbRow {
+public class TopPayer {
 
     private final String taxPayerName;
     private final int taxPayerId;
@@ -36,8 +36,4 @@ public class TopPayer extends DbRow {
         return cumDist;
     }
 
-    @Override
-    public Object[] getValues() {
-        return toRow(taxPayerName, total);
-    }
 }

@@ -3,14 +3,13 @@ package sk.fri.uniza.db.sem.gui.view;
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.Config;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.TaxPayer;
 import sk.fri.uniza.db.sem.db.model.TaxType;
 import sk.fri.uniza.db.sem.util.InputParser;
 import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.Date;
 import java.util.List;
 
 public class TaxSettingView extends FormView {
@@ -22,8 +21,8 @@ public class TaxSettingView extends FormView {
     private final JTextField dateValidFromField;
     private final JTextField dateValidToField;
 
-    public TaxSettingView(Application application) {
-        super(application);
+    public TaxSettingView(Application application, String title) {
+        super(application, title);
 
         contentComponent = new JPanel();
         contentComponent.setLayout(new GridBagLayout());
@@ -165,11 +164,6 @@ public class TaxSettingView extends FormView {
         dateValidToField.setText("");
 
         setLoading(false);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Nastavenie dane";
     }
 
     private static class SendParams {

@@ -21,7 +21,7 @@ public interface DataProvider {
 
     List<TaxPayer> listAllTaxPayers();
 
-    List<TaxPayer> listTaxPayersWhoDidntPayed(int taxType);
+    List<Company> listTaxPayersWhoDidntPayed(int taxType);
 
     boolean sentPayment(TaxPayer taxPayer, TaxType taxType, Date created, Date payed, int amount);
 
