@@ -12,7 +12,6 @@ public class ListCompaniesOwners extends ProviderTableView<CompanyOwner, Void> {
             "Meno",
             "Priezvisko",
             "DIC",
-            "<<id platca>>"
     };
 
     public ListCompaniesOwners(Application application) {

@@ -32,6 +32,6 @@ public class CompanyOwner extends DbRow {
 
     @Override
     public Object[] getValues() {
-        return toRow(firstname, surname, dic, payerId);
+        return toRow(firstname, surname, dic);
     }
 }

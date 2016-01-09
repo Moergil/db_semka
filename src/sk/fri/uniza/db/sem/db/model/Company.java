@@ -4,12 +4,12 @@ public class Company extends DbRow {
 
     private final String name;
     private final String dic;
-    private final int payerId;
+    private final int id;
 
-    public Company(String name, String dic, int payerId) {
+    public Company(String name, String dic, int id) {
         this.name = name;
         this.dic = dic;
-        this.payerId = payerId;
+        this.id = id;
     }
 
     public String getName() {
@@ -20,13 +20,13 @@ public class Company extends DbRow {
         return dic;
     }
 
-    public int getPayerId() {
-        return payerId;
+    public int getId() {
+        return id;
     }
 
     @Override
     public Object[] getValues() {
-        return toRow(name, dic, payerId);
+        return toRow(name, dic);
     }
 
 }

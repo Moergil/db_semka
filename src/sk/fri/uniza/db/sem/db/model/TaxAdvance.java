@@ -44,6 +44,6 @@ public class TaxAdvance extends DbRow {
 
     @Override
     public Object[] getValues() {
-        return toRow(payerId, dic, name, ico, totalTaxDuty, monthAdvancementInNextYear);
+        return toRow(dic, name, ico, totalTaxDuty, monthAdvancementInNextYear);
     }
 }

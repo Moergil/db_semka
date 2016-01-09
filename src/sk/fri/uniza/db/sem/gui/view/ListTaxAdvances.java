@@ -9,7 +9,6 @@ import java.util.List;
 public class ListTaxAdvances extends ProviderTableView<TaxAdvance, Void> {
 
     private static final String COLUMNS[] = {
-            "<<id platcu>>",
             "DIC",
             "Meno",
             "ICO",

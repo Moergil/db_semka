@@ -10,8 +10,7 @@ public class ListCompanies extends ProviderTableView<Company, Void> {
 
     private static final String[] COLUMNS = {
             "Meno",
-            "DIC",
-            "<<payer id>>"
+            "DIC"
     };
 
     public ListCompanies(Application application) {
