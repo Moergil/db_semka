@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 public class SplashLoading {
 
-    private static final String SPLASH_IMAGE_PATH = "splash-image.jpg";
+    private static final String SPLASH_IMAGE_PATH = "splash-image.png";
     private static final int PADDING = 30;
 
     private final JDialog dialog;
@@ -30,6 +30,7 @@ public class SplashLoading {
 
         ImageIcon splashImageIcon = new ImageIcon(splashImage);
         JLabel splashImageLabel = new JLabel(splashImageIcon);
+        splashImageLabel.setSize(300, 300);
 
         JProgressBar progressBar = new JProgressBar();
         progressBar.setIndeterminate(true);
