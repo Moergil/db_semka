@@ -55,4 +55,6 @@ public interface DataProvider {
 
     boolean setTaxAffiliation(TaxPayer taxPayer, TaxType taxType);
 
+    List<Penalty> listPenalties();
+
 }

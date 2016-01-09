@@ -64,6 +64,7 @@ public class MainWindow {
         addMenuItem(listingsMenu, () -> new ListTaxAdvances(application, "Preddavky na daň"));
         addMenuItem(listingsMenu, () -> new ListTopPayers(application, "Top platci"));
         addMenuItem(listingsMenu, () -> new PayedLessThanMeanView(application, "Platili menej ako priemer"));
+        addMenuItem(listingsMenu, () -> new PenaltiesView(application, "Penále"));
 
         menuBar.add(listingsMenu);
 

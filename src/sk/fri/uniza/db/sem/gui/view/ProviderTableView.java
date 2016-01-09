@@ -23,11 +23,13 @@ public abstract class ProviderTableView<T, P> extends TableView<T, P> {
 
     @Override
     protected TableModel onTableDataLoaded(List<T> data) {
-        DefaultTableModel tm = new DefaultTableModel(getColumns(), 0);
+        String[] columns = getColumns();
+        int dataSetSize = data.size();
+        DefaultTableModel tm = new DefaultTableModel(columns, dataSetSize);
 
         for (int i = 0; i < data.size(); i++) {
             T row = data.get(i);
-            tm.addRow(mapRow(row));
+            tm.insertRow(i, mapRow(row));
         }
 
         return tm;

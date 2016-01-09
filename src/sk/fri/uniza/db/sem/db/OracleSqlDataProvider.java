@@ -76,7 +76,8 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
                     OracleTypes.INTEGER,
                     OracleTypes.INTEGER
             ),
-            LIST_ALLOWED_TAXES = new SelectFunction("f_du_povolene_dane");
+            LIST_ALLOWED_TAXES = new SelectFunction("f_du_povolene_dane"),
+            LIST_PENALTIES = new SelectFunction("f_du_prehlad_penale_nezapl");
 
     private static final PostProcedure
             POST_NEW_PAYMENT = new PostProcedure(
@@ -433,6 +434,23 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
         int taxTypeId = taxType.getType();
 
         return post(POST_TAX_AFFILIATION, taxPayerId, taxTypeId);
+    }
+
+    @Override
+    public List<Penalty> listPenalties() {
+        Mapper<Penalty> mapper = (rs) -> {
+            String payerName = rs.getString(1);
+            Date dateCreated = stringToDate(rs.getString(2));
+            String paymentState = rs.getString(3);
+            int amount = rs.getInt(4);
+            int percent = rs.getInt(5);
+            int payerId = rs.getInt(6);
+            float penalties = rs.getFloat(7);
+
+            return new Penalty(payerName, dateCreated, paymentState, amount, percent, payerId, penalties);
+        };
+
+        return list(LIST_PENALTIES, mapper);
     }
 
     private boolean post(PostProcedure postProcedure, Object... params) {

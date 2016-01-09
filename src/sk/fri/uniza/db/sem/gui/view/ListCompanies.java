@@ -25,7 +25,6 @@ public class ListCompanies extends ProviderTableView<Company, Void> {
     @Override
     public void onShow() {
         super.onShow();
-
         requestTableDataLoad(null);
     }
 
