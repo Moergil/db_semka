@@ -259,13 +259,13 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     }
 
     @Override
-    public List<TaxPayerMean> listPayersWhoPayedLessThanMean(TaxType taxType) {
-        Mapper<TaxPayerMean> mapper = (rs) -> {
-            int taxPayerId = rs.getInt(1);
-            String taxPayerName = rs.getString(2);
+    public List<CompanyMean> listPayersWhoPayedLessThanMean(TaxType taxType) {
+        Mapper<CompanyMean> mapper = (rs) -> {
+            String dic = rs.getString(1);
+            String name = rs.getString(2);
             float mean = rs.getFloat(3);
             float meanAll = rs.getFloat(4);
-            return new TaxPayerMean(taxPayerId, taxPayerName, mean, meanAll);
+            return new CompanyMean(dic, name, mean, meanAll);
         };
 
         return list(LIST_PAYERS_PAY_LESS_THAN_MEAN, mapper, taxType.getType());

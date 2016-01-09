@@ -27,7 +27,7 @@ public interface DataProvider {
 
     Office getOfficeTownName(int officeId);
 
-    List<TaxPayerMean> listPayersWhoPayedLessThanMean(TaxType taxType);
+    List<CompanyMean> listPayersWhoPayedLessThanMean(TaxType taxType);
 
     List<Company> listCompanies();
 

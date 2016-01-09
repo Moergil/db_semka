@@ -2,24 +2,25 @@ package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.Company;
+import sk.fri.uniza.db.sem.db.model.CompanyMean;
 import sk.fri.uniza.db.sem.db.model.TaxType;
-import sk.fri.uniza.db.sem.util.DataWorker;
 import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
 import java.util.List;
 
-public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<Company, TaxType> {
+public class PayedLessThanMeanView extends ProviderTableView<CompanyMean, TaxType> {
 
-    private static final String COLUMNS[] = {
-            "DIČ Firmy",
-            "Názov"
+    private static final String[] COLUMNS = {
+            "DIČ",
+            "Názov",
+            "Priemer",
+            "Priemer ostatní"
     };
 
     private final JComboBox<TaxType> taxTypeComboBox;
 
-    public ListTaxPayersWhoDidntPayedView(Application application, String title) {
+    public PayedLessThanMeanView(Application application, String title) {
         super(application, title);
 
         taxTypeComboBox = new JComboBox<>();
@@ -75,8 +76,8 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<Company, T
     }
 
     @Override
-    protected List<Company> loadTableDataFromProvider(DataProvider provider, TaxType params) {
-        return provider.listTaxPayersWhoDidntPayed(params.getType());
+    protected List<CompanyMean> loadTableDataFromProvider(DataProvider provider, TaxType taxType) {
+        return provider.listPayersWhoPayedLessThanMean(taxType);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class ListTaxPayersWhoDidntPayedView extends ProviderTableView<Company, T
     }
 
     @Override
-    protected Object[] mapRow(Company data) {
-        return toRow(data.getDic(), data.getName());
+    protected Object[] mapRow(CompanyMean data) {
+        return toRow(data.getDic(), data.getName(), data.getMean(), data.getMeanOthers());
     }
 }
