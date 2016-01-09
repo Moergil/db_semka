@@ -50,8 +50,6 @@ public class MainWindow {
 
         JMenu listingsMenu = new JMenu("Výpisy");
 
-        JMenuItem menuItem;
-
         addMenuItem(listingsMenu, () -> new ListTaxPayingPeriodsView(application, "Úrad / Dátum / Počet"));
         addMenuItem(listingsMenu, () -> new ListIncomeCompositionsView(application, "Zloženie príjmov"));
         addMenuItem(listingsMenu, () -> new ListTaxPayersWhoDidntPayedView(application, "Právnické osoby - neplatiči"));

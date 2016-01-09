@@ -4,7 +4,6 @@ import sk.fri.uniza.db.sem.Application;
 import sk.fri.uniza.db.sem.db.DataProvider;
 import sk.fri.uniza.db.sem.db.model.Company;
 import sk.fri.uniza.db.sem.db.model.TaxType;
-import sk.fri.uniza.db.sem.util.DataWorker;
 import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
