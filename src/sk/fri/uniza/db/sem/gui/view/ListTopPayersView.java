@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.TopPayerParams> {
+public class ListTopPayersView extends ProviderTableView<TopPayer, ListTopPayersView.TopPayerParams> {
 
     private static final String COLUMNS[] = {
             "Platca",
@@ -24,7 +24,7 @@ public class ListTopPayers extends ProviderTableView<TopPayer, ListTopPayers.Top
 
     private DataWorker<Void, TaxType[]> taxTypesLoader;
 
-    public ListTopPayers(Application application, String title) {
+    public ListTopPayersView(Application application, String title) {
         super(application, title);
 
         this.yearField = new JTextField(4);

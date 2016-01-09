@@ -6,7 +6,7 @@ import sk.fri.uniza.db.sem.db.model.TaxPayment;
 
 import java.util.List;
 
-public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Void> {
+public class ListTaxPaymentsWithDeclineView extends ProviderTableView<TaxPayment, Void> {
 
     private static final String COLUMNS[] = {
             "Platca",
@@ -14,7 +14,7 @@ public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Vo
             "Daň"
     };
 
-    public ListTaxPaymentsWithDecline(Application application, String title) {
+    public ListTaxPaymentsWithDeclineView(Application application, String title) {
         super(application, title);
     }
 

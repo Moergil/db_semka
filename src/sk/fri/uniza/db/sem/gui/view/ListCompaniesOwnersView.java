@@ -6,7 +6,7 @@ import sk.fri.uniza.db.sem.db.model.CompanyOwner;
 
 import java.util.List;
 
-public class ListCompaniesOwners extends ProviderTableView<CompanyOwner, Void> {
+public class ListCompaniesOwnersView extends ProviderTableView<CompanyOwner, Void> {
 
     private static final String[] COLUMNS = {
             "Meno",
@@ -14,7 +14,7 @@ public class ListCompaniesOwners extends ProviderTableView<CompanyOwner, Void> {
             "DIC",
     };
 
-    public ListCompaniesOwners(Application application, String title) {
+    public ListCompaniesOwnersView(Application application, String title) {
         super(application, title);
     }
 

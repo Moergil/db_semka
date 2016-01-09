@@ -6,7 +6,7 @@ import sk.fri.uniza.db.sem.db.model.TaxAdvance;
 
 import java.util.List;
 
-public class ListTaxAdvances extends ProviderTableView<TaxAdvance, Void> {
+public class ListTaxAdvancesView extends ProviderTableView<TaxAdvance, Void> {
 
     private static final String COLUMNS[] = {
             "DIC",
@@ -16,7 +16,7 @@ public class ListTaxAdvances extends ProviderTableView<TaxAdvance, Void> {
             "Mesačný preddavok o rok"
     };
 
-    public ListTaxAdvances(Application application, String title) {
+    public ListTaxAdvancesView(Application application, String title) {
         super(application, title);
     }
 

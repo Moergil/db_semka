@@ -6,14 +6,14 @@ import sk.fri.uniza.db.sem.db.model.Company;
 
 import java.util.List;
 
-public class ListCompanies extends ProviderTableView<Company, Void> {
+public class ListCompaniesView extends ProviderTableView<Company, Void> {
 
     private static final String[] COLUMNS = {
             "Meno",
             "DIC"
     };
 
-    public ListCompanies(Application application, String title) {
+    public ListCompaniesView(Application application, String title) {
         super(application, title);
     }
 

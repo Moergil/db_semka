@@ -55,14 +55,14 @@ public class MainWindow {
         addMenuItem(listingsMenu, () -> new ListTaxPayingPeriodsView(application, "Úrad / Dátum / Počet"));
         addMenuItem(listingsMenu, () -> new ListIncomeCompositionsView(application, "Zloženie príjmov"));
         addMenuItem(listingsMenu, () -> new ListTaxPayersWhoDidntPayedView(application, "Právnické osoby - neplatiči"));
-        addMenuItem(listingsMenu, () -> new ListCompanies(application, "Spoločnosti"));
-        addMenuItem(listingsMenu, () -> new ListCompaniesOwners(application, "Vlastníci firiem"));
-        addMenuItem(listingsMenu, () -> new ListTaxesOverview(application, "Prehľad daní"));
-        addMenuItem(listingsMenu, () -> new ListTaxPaymentsWithDecline(application, "Daň zo zisku - pokles"));
-        addMenuItem(listingsMenu, () -> new ListPaymentsSchedules(application, "Rozpis platieb"));
-        addMenuItem(listingsMenu, () -> new ListChanges(application, "Výpis zmien"));
-        addMenuItem(listingsMenu, () -> new ListTaxAdvances(application, "Preddavky na daň"));
-        addMenuItem(listingsMenu, () -> new ListTopPayers(application, "Top platci"));
+        addMenuItem(listingsMenu, () -> new ListCompaniesView(application, "Spoločnosti"));
+        addMenuItem(listingsMenu, () -> new ListCompaniesOwnersView(application, "Vlastníci firiem"));
+        addMenuItem(listingsMenu, () -> new ListTaxesOverviewView(application, "Prehľad daní"));
+        addMenuItem(listingsMenu, () -> new ListTaxPaymentsWithDeclineView(application, "Daň zo zisku - pokles"));
+        addMenuItem(listingsMenu, () -> new ListPaymentsSchedulesView(application, "Rozpis platieb"));
+        addMenuItem(listingsMenu, () -> new ListChangesView(application, "Výpis zmien"));
+        addMenuItem(listingsMenu, () -> new ListTaxAdvancesView(application, "Preddavky na daň"));
+        addMenuItem(listingsMenu, () -> new ListTopPayersView(application, "Top platci"));
         addMenuItem(listingsMenu, () -> new PayedLessThanMeanView(application, "Platili menej ako priemer"));
         addMenuItem(listingsMenu, () -> new PenaltiesView(application, "Penále"));
 

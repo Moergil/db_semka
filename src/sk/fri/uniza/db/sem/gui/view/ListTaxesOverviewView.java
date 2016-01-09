@@ -1,9 +1,8 @@
 package sk.fri.uniza.db.sem.gui.view;
 
 import sk.fri.uniza.db.sem.Application;
-import sk.fri.uniza.db.sem.Config;
 import sk.fri.uniza.db.sem.db.DataProvider;
-import sk.fri.uniza.db.sem.db.model.PaymentSchedule;
+import sk.fri.uniza.db.sem.db.model.Payment;
 import sk.fri.uniza.db.sem.db.model.TaxPayer;
 import sk.fri.uniza.db.sem.db.model.TaxType;
 import sk.fri.uniza.db.sem.util.DataWorker;
@@ -12,40 +11,31 @@ import sk.fri.uniza.db.sem.util.Strings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 import java.util.List;
 
-public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, ListPaymentsSchedules.PaymentSchedulesParams> {
+public class ListTaxesOverviewView extends ProviderTableView<Payment, ListTaxesOverviewView.TaxesOverviewParams> {
 
-    private static final String COLUMNS[] = {
-            "Názov dane",
-            "Dátum vzniku",
+    private static final String[] COLUMNS = {
             "Suma",
-            "Dlh"
+            "Dátum zaplatenia"
     };
 
     private static final int PAYERS_LOADED = 1;
     private static final int TAXES_LOADED = 1 << 1;
 
-    private final JComboBox<TaxPayer> taxPayerComboBox;
-    private final JComboBox<TaxType> taxTypeComboBox;
-
-    private final JTextField dateFromField;
-    private final JTextField dateToField;
+    private JComboBox<TaxPayer> taxPayersComboBox;
+    private JComboBox<TaxType> taxTypesComboBox;
 
     private DataWorker<Void, TaxPayer[]> taxPayerLoader;
     private DataWorker<Void, TaxType[]> taxTypesLoader;
 
     private int loadingMask;
 
-    public ListPaymentsSchedules(Application application, String title) {
+    public ListTaxesOverviewView(Application application, String title) {
         super(application, title);
 
-        this.taxPayerComboBox = new JComboBox<>();
-        this.taxTypeComboBox = new JComboBox<>();
-
-        this.dateFromField = new JTextField(Config.DATE_MAX_LENGTH);
-        this.dateToField = new JTextField(Config.DATE_MAX_LENGTH);
+        taxPayersComboBox = new JComboBox<>();
+        taxTypesComboBox = new JComboBox<>();
 
         JToolBar toolbar = createToolbar();
         setToolbar(toolbar);
@@ -60,44 +50,26 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
 
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 2;
-        JLabel taxTypeLabel = new JLabel(Strings.TAX_PAYER);
+        JLabel taxPayerLabel = new JLabel(Strings.TAX_PAYER);
+        toolbar.add(taxPayerLabel, c);
+
+        c.gridx++;
+        toolbar.add(taxPayersComboBox, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        JLabel taxTypeLabel = new JLabel(Strings.DATO_TO);
         toolbar.add(taxTypeLabel, c);
 
-        c.gridx += 2;
-        toolbar.add(taxPayerComboBox, c);
-
-        c.gridx = 0;
-        c.gridy++;
-        JLabel subjectTypeLable = new JLabel(Strings.TAX_TYPE);
-        toolbar.add(subjectTypeLable, c);
-
-        c.gridx += 2;
-        toolbar.add(taxTypeComboBox, c);
-
-        JLabel dateFromLabel = new JLabel(Strings.DATE_FROM);
-
-        c.gridx = 0;
-        c.gridy++;
-        c.gridwidth = 1;
-        toolbar.add(dateFromLabel, c);
+        c.gridx++;
+        toolbar.add(taxTypesComboBox, c);
 
         c.gridx++;
-        toolbar.add(dateFromField, c);
-
-        c.gridx++;
-        JLabel dateToLabel = new JLabel(Strings.DATO_TO);
-        toolbar.add(dateToLabel, c);
-
-        c.gridx++;
-        toolbar.add(dateToField, c);
-
-        c.gridx = 5;
         c.gridy = 0;
-        c.gridheight = 3;
+        c.gridheight = 2;
         JButton button = new JButton(Strings.SEARCH);
         button.addActionListener((e) -> {
-            PaymentSchedulesParams params = createParams();
+            TaxesOverviewParams params = createParams();
 
             if (params != null) {
                 requestTableDataLoad(params);
@@ -108,6 +80,7 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
         return toolbar;
     }
 
+    @Override
     public void onShow() {
         super.onShow();
 
@@ -130,7 +103,7 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
 
     private void onTaxPayersLoaded(TaxPayer[] taxPayers) {
         ComboBoxModel<TaxPayer> model = new DefaultComboBoxModel<>(taxPayers);
-        taxPayerComboBox.setModel(model);
+        taxPayersComboBox.setModel(model);
 
         onComboBoxLoaded(PAYERS_LOADED);
     }
@@ -143,7 +116,7 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
 
     private void onTaxTypesLoaded(TaxType[] taxTypes) {
         ComboBoxModel<TaxType> model = new DefaultComboBoxModel<>(taxTypes);
-        taxTypeComboBox.setModel(model);
+        taxTypesComboBox.setModel(model);
 
         onComboBoxLoaded(TAXES_LOADED);
     }
@@ -156,14 +129,26 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
         }
     }
 
+    private TaxesOverviewParams createParams() {
+        try {
+            Object[] selectedTaxPayers = taxPayersComboBox.getSelectedObjects();
+            TaxPayer taxPayer = InputParser.getFirstSelectedItem(selectedTaxPayers);
+
+            Object[] selectedTaxTypes = taxTypesComboBox.getSelectedObjects();
+            TaxType taxType = InputParser.getFirstSelectedItem(selectedTaxTypes);
+
+            return new TaxesOverviewParams(taxPayer, taxType);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @Override
-    protected List<PaymentSchedule> loadTableDataFromProvider(DataProvider provider, PaymentSchedulesParams params) {
+    protected List<Payment> loadTableDataFromProvider(DataProvider provider, TaxesOverviewParams params) {
         TaxPayer taxPayer = params.getTaxPayer();
         TaxType taxType = params.getTaxType();
-        Date dateFrom = params.getDateFrom();
-        Date dateTo = params.getDateTo();
 
-        return provider.listPaymentsSchedules(taxPayer, taxType, dateFrom, dateTo);
+        return provider.listTaxesOverview(taxPayer, taxType);
     }
 
     @Override
@@ -172,39 +157,18 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
     }
 
     @Override
-    protected Object[] mapRow(PaymentSchedule data) {
-        return toRow(data.getTaxName(), data.getCreation(), data.getAmount(), data.getDebt());
+    protected Object[] mapRow(Payment data) {
+        return toRow(data.getAmount(), data.getPayedDate());
     }
 
-    private PaymentSchedulesParams createParams() {
-        try {
-            TaxPayer taxPayer = InputParser.getFirstSelectedItem(taxPayerComboBox.getSelectedObjects());
-            TaxType taxType = InputParser.getFirstSelectedItem(taxTypeComboBox.getSelectedObjects());
-
-            String dateFromText = dateFromField.getText();
-            Date dateFrom = InputParser.parseDate(dateFromText);
-
-            String dateToText = dateToField.getText();
-            Date dateTo = InputParser.parseDate(dateToText);
-
-            return new PaymentSchedulesParams(taxPayer, taxType, dateFrom, dateTo);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    protected static class PaymentSchedulesParams {
+    protected static class TaxesOverviewParams {
 
         private final TaxPayer taxPayer;
         private final TaxType taxType;
-        private final Date dateFrom;
-        private final Date dateTo;
 
-        public PaymentSchedulesParams(TaxPayer taxPayer, TaxType taxType, Date dateFrom, Date dateTo) {
+        public TaxesOverviewParams(TaxPayer taxPayer, TaxType taxType) {
             this.taxPayer = taxPayer;
             this.taxType = taxType;
-            this.dateFrom = dateFrom;
-            this.dateTo = dateTo;
         }
 
         public TaxPayer getTaxPayer() {
@@ -214,13 +178,6 @@ public class ListPaymentsSchedules extends ProviderTableView<PaymentSchedule, Li
         public TaxType getTaxType() {
             return taxType;
         }
-
-        public Date getDateFrom() {
-            return dateFrom;
-        }
-
-        public Date getDateTo() {
-            return dateTo;
-        }
     }
+
 }

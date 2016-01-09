@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.Date;
 import java.util.List;
 
-public class ListChanges extends ProviderTableView<JuridicalPersonName, ListChanges.TimeRangeParams> {
+public class ListChangesView extends ProviderTableView<JuridicalPersonName, ListChangesView.TimeRangeParams> {
 
     private static final String COLUMNS[] = {
             "Názov"
@@ -19,7 +19,7 @@ public class ListChanges extends ProviderTableView<JuridicalPersonName, ListChan
     private final JTextField dateFromField;
     private final JTextField dateToField;
 
-    public ListChanges(Application application, String title) {
+    public ListChangesView(Application application, String title) {
         super(application, title);
 
         dateFromField = new JTextField();
