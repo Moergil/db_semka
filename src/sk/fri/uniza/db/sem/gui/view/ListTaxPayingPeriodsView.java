@@ -56,7 +56,7 @@ public class ListTaxPayingPeriodsView extends ProviderTableView<TaxPayingPeriod,
 
     @Override
     public String getTitle() {
-        return "Obdobia platcov";
+        return "Úrad / Dátum / Počet";
     }
 
     public JToolBar createToolbar() {

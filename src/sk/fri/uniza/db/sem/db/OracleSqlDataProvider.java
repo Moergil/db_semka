@@ -316,10 +316,11 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     public List<TaxPayment> listTaxPaymentsWithDecline() {
         Mapper<TaxPayment> mapper = (rs) -> {
             int taxPayerId = rs.getInt(1);
-            int year = rs.getInt(2);
-            float tax = rs.getFloat(3);
+            String taxPayerName = rs.getString(2);
+            int year = rs.getInt(3);
+            float tax = rs.getFloat(4);
 
-            return new TaxPayment(taxPayerId, year, tax);
+            return new TaxPayment(taxPayerId, taxPayerName, year, tax);
         };
 
         return list(LIST_INCOME_TAX_WITH_DECLINE, mapper);
@@ -340,10 +341,12 @@ public class OracleSqlDataProvider implements DataProvider, AutoCloseable {
     @Override
     public List<PaymentSchedule> listPaymentsSchedules(TaxPayer taxPayer, TaxType taxType, Date from, Date to) {
         Mapper<PaymentSchedule> mapper = (rs) -> {
-            String taxName = rs.getString(1);
-            Date creation = stringToDate(rs.getString(2));
-            int amount = rs.getInt(3);
-            int debt = rs.getInt(4);
+            int taxPayerId = rs.getInt(1);
+            int taxTypeId = rs.getInt(2);
+            String taxName = rs.getString(3);
+            Date creation = stringToDate(rs.getString(4));
+            int amount = rs.getInt(5);
+            int debt = rs.getInt(6);
 
             return new PaymentSchedule(taxName, creation, amount, debt);
         };

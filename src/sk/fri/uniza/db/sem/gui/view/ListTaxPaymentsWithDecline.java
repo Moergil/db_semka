@@ -9,7 +9,7 @@ import java.util.List;
 public class ListTaxPaymentsWithDecline extends ProviderTableView<TaxPayment, Void> {
 
     private static final String COLUMNS[] = {
-            "<<id platca>>",
+            "Platca",
             "Rok",
             "Daň"
     };

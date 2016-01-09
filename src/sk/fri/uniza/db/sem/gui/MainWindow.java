@@ -52,7 +52,7 @@ public class MainWindow {
 
         JMenuItem menuItem;
 
-        addMenuItem(listingsMenu, "Obdobia platcov", () -> new ListTaxPayingPeriodsView(application));
+        addMenuItem(listingsMenu, "Úrad / Dátum / Počet", () -> new ListTaxPayingPeriodsView(application));
         addMenuItem(listingsMenu, "Zloženie príjmov", () -> new ListIncomeCompositionsView(application));
         addMenuItem(listingsMenu, "Právnické osoby - neplatiči", () -> new ListTaxPayersWhoDidntPayedView(application));
         addMenuItem(listingsMenu, "Spoločnosti", () -> new ListCompanies(application));
